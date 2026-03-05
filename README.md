@@ -62,45 +62,6 @@ curl -i http://localhost:8080/health
 make down
 ```
 
-## Запуск локально (API на хосте)
-
-1. Поднимите только MySQL и Redis:
-
-```bash
-docker compose -f deploy/docker-compose.yml up -d mysql redis
-```
-
-2. Примените миграции (DSN для хоста):
-
-```bash
-MYSQL_DSN='taskforge:taskforge@tcp(localhost:3306)/taskforge?parseTime=true&multiStatements=true' make migrate-up
-```
-
-3. Экспортируйте переменные окружения и запустите API:
-
-```bash
-export HTTP_PORT=8080
-export MYSQL_DSN='taskforge:taskforge@tcp(localhost:3306)/taskforge?parseTime=true&multiStatements=true'
-export REDIS_ADDR='localhost:6379'
-export REDIS_PASSWORD=''
-export REDIS_DB=0
-export REDIS_TASKS_TTL_MIN=5
-export JWT_SECRET='dev-secret-change-me'
-export RATE_LIMIT_PER_MIN=100
-export INVITE_TTL_MIN=1440
-export INVITE_NOTIFY_URL=''
-
-make run
-```
-
-## Миграции
-
-Применить миграции вручную:
-
-```bash
-MYSQL_DSN='taskforge:taskforge@tcp(localhost:3306)/taskforge?parseTime=true&multiStatements=true' make migrate-up
-```
-
 ## API маршруты
 
 Базовый префикс для бизнес-ручек: `/api/v1`  
