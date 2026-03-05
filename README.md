@@ -331,7 +331,7 @@ rg -n "os.Getenv|getInt|getStr|Load\\(" internal/config/config.go
 
 ```text
 cmd/api            # входная точка приложения
-internal/app       # сборка зависимостей и роутера
+internal/app       # сборка зависимостей 
 internal/config    # конфиг из env
 internal/domain    # доменные модели/ошибки
 internal/http      # хендлеры и middleware
